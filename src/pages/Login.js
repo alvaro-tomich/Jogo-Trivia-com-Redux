@@ -69,9 +69,8 @@ class Login extends Component {
           </button>
           <button
             type="button"
-            data-testid="settings-title"
+            data-testid="btn-settings"
             onClick={ this.settingsButtonClick }
-            disabled={ this.verifyLogin(name, email) }
           >
             Configurações
           </button>
