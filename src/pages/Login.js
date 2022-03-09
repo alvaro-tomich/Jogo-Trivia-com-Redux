@@ -32,6 +32,12 @@ class Login extends Component {
     history.push('/game');
   }
 
+  settingsButtonClick = (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+    history.push('./settings');
+  }
+
   render() {
     const { name, email } = this.state;
     return (
@@ -60,6 +66,14 @@ class Login extends Component {
             onClick={ this.handleClick }
           >
             Play
+          </button>
+          <button
+            type="button"
+            data-testid="settings-title"
+            onClick={ this.settingsButtonClick }
+            disabled={ this.verifyLogin(name, email) }
+          >
+            Configurações
           </button>
         </form>
       </div>
