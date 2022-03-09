@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import fetchQuestions from '../services/api';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchTokenThunk } from '../redux/actions/index';
 import logo from '../trivia.png';
 
 class Login extends Component {
   state = {
     name: '',
     email: '',
-  }
-
-  componentDidMount() {
-    fetchQuestions();
   }
 
   handleChange = ({ target }) => {
@@ -22,6 +20,16 @@ class Login extends Component {
     if (name.length === 0 || email.length === 0) {
       return true;
     }
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+    const { getToken, history, getMapToken } = this.props;
+    getToken();
+    if (getMapToken) {
+      localStorage.setItem('token', getMapToken);
+    }
+    history.push('/game');
   }
 
   render() {
@@ -49,6 +57,7 @@ class Login extends Component {
             type="submit"
             data-testid="btn-play"
             disabled={ this.verifyLogin(name, email) }
+            onClick={ this.handleClick }
           >
             Play
           </button>
@@ -58,4 +67,21 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  getToken: () => (
+    dispatch(fetchTokenThunk())),
+});
+
+const mapStateToProps = (state) => ({
+  getMapToken: state.token,
+});
+
+Login.propTypes = ({
+  getToken: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  getMapToken: PropTypes.string.isRequired,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
