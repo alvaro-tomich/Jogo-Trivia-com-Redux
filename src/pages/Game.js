@@ -1,9 +1,15 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
-export default class Game extends Component {
+class Game extends Component {
   render() {
     return (
-      <div>{ (JSON.stringify((localStorage.getItem('token')))) }</div>
+      <div>
+        <Header />
+      </div>
     );
   }
 }
+
+export default connect()(Game);

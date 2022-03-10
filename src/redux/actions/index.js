@@ -12,9 +12,12 @@ const getToken = (token) => ({
   payload: token,
 });
 
-export const getEmail = (email) => ({
-  type: 'SAVE_EMAIL',
-  payload: email,
+export const getPlayerInfo = (email, name) => ({
+  type: 'SAVE_PLAYER',
+  payload: {
+    email,
+    name,
+  },
 });
 
 export const fetchTokenThunk = () => async (dispatch) => {

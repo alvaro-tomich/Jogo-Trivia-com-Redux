@@ -7,10 +7,11 @@ const INITIAL_STATE = {
 
 const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case 'SAVE_EMAIL':
+  case 'SAVE_PLAYER':
     return {
       ...state,
-      gravatarEmail: action.payload,
+      gravatarEmail: action.payload.email,
+      name: action.payload.name,
     };
   default:
     return state;
