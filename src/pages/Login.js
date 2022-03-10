@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTokenThunk } from '../redux/actions/index';
+import { fetchTokenThunk, getPlayerInfo } from '../redux/actions/index';
 import logo from '../trivia.png';
 
 class Login extends Component {
@@ -24,8 +24,10 @@ class Login extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    const { getToken, history, getMapToken } = this.props;
+    const { getToken, history, getMapToken, playerInfo } = this.props;
+    const { name, email } = this.state;
     getToken();
+    playerInfo(email, name);
     if (getMapToken) {
       localStorage.setItem('token', getMapToken);
     }
@@ -70,18 +72,20 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => ({
   getToken: () => (
     dispatch(fetchTokenThunk())),
+  playerInfo: (email, name) => dispatch(getPlayerInfo(email, name)),
 });
 
 const mapStateToProps = (state) => ({
   getMapToken: state.token,
 });
 
-Login.propTypes = ({
+Login.propTypes = {
+  getMapToken: PropTypes.string.isRequired,
   getToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
-  getMapToken: PropTypes.string.isRequired,
-});
+  playerInfo: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
