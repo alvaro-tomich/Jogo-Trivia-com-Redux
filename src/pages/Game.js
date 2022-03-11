@@ -12,13 +12,14 @@ class Game extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <div>
         <div>
           <Header />
         </div>
         <div>
-          <Questions />
+          <Questions history={ history } />
         </div>
       </div>
     );
@@ -28,6 +29,7 @@ class Game extends Component {
 Game.propTypes = {
   getMapToken: PropTypes.string.isRequired,
   getQuestions: PropTypes.func.isRequired,
+  history: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
