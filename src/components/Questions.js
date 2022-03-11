@@ -6,12 +6,26 @@ class Questions extends Component {
     state = {
       next: 0,
       nextButtonVisible: false,
+      timer: 30,
+    }
+
+    componentDidMount() {
+      const oneSecond = 1000;
+      setInterval(() => { this.decreaseTimer(); }, oneSecond);
+    }
+
+    decreaseTimer = () => {
+      const { timer } = this.state;
+      if (timer >= 1) {
+        this.setState((prevState) => ({
+          timer: prevState.timer - 1,
+        }));
+      }
     }
 
     nextQuestionClick = () => {
       const { next } = this.state;
       const { questions } = this.props;
-      console.log(questions.length);
       const maxNumber = questions.length - 2;
       if (next <= maxNumber) {
         this.setState((prevState) => ({
@@ -23,7 +37,11 @@ class Questions extends Component {
     }
 
     generateAnswers = (questions) => {
-      const { next } = this.state;
+      const { next, timer } = this.state;
+      let isAnswersBtnDisabled = false;
+      if (timer === 0) {
+        isAnswersBtnDisabled = true;
+      }
       const orderNumber = 0.5;
       const wrongAnswers = questions[next].incorrect_answers
         .map((answer, index) => (
@@ -33,6 +51,7 @@ class Questions extends Component {
             data-testid={ `wrong-answer-${index}` }
             onClick={ this.changeAnswerColor }
             className="wrong-buttons"
+            disabled={ isAnswersBtnDisabled }
           >
             { answer }
           </button>
@@ -44,6 +63,7 @@ class Questions extends Component {
           data-testid="correct-answer"
           onClick={ this.changeAnswerColor }
           className="correct-button"
+          disabled={ isAnswersBtnDisabled }
         >
           {questions[next].correct_answer }
         </button>,
@@ -62,7 +82,6 @@ class Questions extends Component {
 
       const wrongButtons = document.querySelectorAll('.wrong-buttons');
       wrongButtons.forEach((element) => element.classList.add('wrong-color'));
-
       this.setState({ nextButtonVisible: true });
     }
 
@@ -75,7 +94,7 @@ class Questions extends Component {
     }
 
     render() {
-      const { next, nextButtonVisible } = this.state;
+      const { next, nextButtonVisible, timer } = this.state;
       const { questions } = this.props;
       const nextButton = (
         <button
@@ -91,6 +110,9 @@ class Questions extends Component {
       }
       return (
         <div>
+          <header>
+            <p>{ timer }</p>
+          </header>
           <p data-testid="question-category">{ questions[next].category }</p>
           <p data-testid="question-text">{ questions[next].question }</p>
           <div data-testid="answer-options" id="answers-div">
