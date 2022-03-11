@@ -93,7 +93,7 @@ const mapStateToProps = (state) => ({
 });
 
 Login.propTypes = {
-  getMapToken: PropTypes.string.isRequired,
+  getMapToken: PropTypes.arrayOf(PropTypes.string).isRequired,
   getToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
