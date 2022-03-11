@@ -29,6 +29,15 @@ class Game extends Component {
 
             </button>
           </Link>
+          <Link to="/">
+            <button
+              type="button"
+              data-testid="btn-play-again"
+            >
+              Play Again
+
+            </button>
+          </Link>
         </div>
       </div>
     );
