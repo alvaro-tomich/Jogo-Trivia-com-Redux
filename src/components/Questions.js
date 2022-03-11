@@ -7,7 +7,7 @@ class Questions extends Component {
       next: 0,
     }
 
-    handleClick = () => {
+    nextQuestionClick = () => {
       const { next } = this.state;
       const { questions } = this.props;
       console.log(questions.length);
@@ -17,6 +17,7 @@ class Questions extends Component {
           next: prevState.next + 1,
         }));
       }
+      this.removeAnswerBorder();
     }
 
     generateAnswers = (questions) => {
@@ -28,6 +29,8 @@ class Questions extends Component {
             key={ index }
             type="button"
             data-testid={ `wrong-answer-${index}` }
+            onClick={ this.changeAnswerColor }
+            className="wrong-buttons"
           >
             { answer }
           </button>
@@ -37,6 +40,8 @@ class Questions extends Component {
           key="correct"
           type="button"
           data-testid="correct-answer"
+          onClick={ this.changeAnswerColor }
+          className="correct-button"
         >
           {questions[next].correct_answer }
         </button>,
@@ -47,6 +52,22 @@ class Questions extends Component {
         return (Math.round(Math.random()) - orderNumber);
       }
       return arrOfAnswers.sort(randOrd);
+    }
+
+    changeAnswerColor = () => {
+      const correctButton = document.querySelector('.correct-button');
+      correctButton.classList.add('correct-color');
+
+      const wrongButtons = document.querySelectorAll('.wrong-buttons');
+      wrongButtons.forEach((element) => element.classList.add('wrong-color'));
+    }
+
+    removeAnswerBorder = () => {
+      const correctButton = document.querySelector('.correct-button');
+      correctButton.classList.remove('correct-color');
+
+      const wrongButtons = document.querySelectorAll('.wrong-buttons');
+      wrongButtons.forEach((element) => element.classList.remove('wrong-color'));
     }
 
     render() {
@@ -60,12 +81,12 @@ class Questions extends Component {
         <div>
           <p data-testid="question-category">{ questions[next].category }</p>
           <p data-testid="question-text">{ questions[next].question }</p>
-          <div data-testid="answer-options">
+          <div data-testid="answer-options" id="answers-div">
             {questions && this.generateAnswers(questions)}
           </div>
           <button
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.nextQuestionClick }
           >
             Next
           </button>
