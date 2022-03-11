@@ -11,7 +11,6 @@ class Questions extends Component {
     nextQuestionClick = () => {
       const { next } = this.state;
       const { questions } = this.props;
-      console.log(questions.length);
       const maxNumber = questions.length - 2;
       if (next <= maxNumber) {
         this.setState((prevState) => ({
@@ -20,6 +19,10 @@ class Questions extends Component {
       }
       this.removeAnswerBorder();
       this.setState({ nextButtonVisible: false });
+
+      /* estou chamando abaixo a função que guarda o placar só pra testar o valor do calculo, quando clica no next
+      ele exibe um console.log com o valor que vamos exibir no Header depois */
+      this.increaseScore(questions, 2);
     }
 
     generateAnswers = (questions) => {
@@ -42,6 +45,8 @@ class Questions extends Component {
           key="correct"
           type="button"
           data-testid="correct-answer"
+          /* a função de placar deveria ser chamada nesse onclick mas quando tentei chamar ela quebrou, por
+          isso chamei ela no botão next */
           onClick={ this.changeAnswerColor }
           className="correct-button"
         >
@@ -72,6 +77,32 @@ class Questions extends Component {
 
       const wrongButtons = document.querySelectorAll('.wrong-buttons');
       wrongButtons.forEach((element) => element.classList.remove('wrong-color'));
+    }
+
+    /* funçao pra aumentar o placar no header */
+    increaseScore = (questions, timerValue) => {
+      this.changeAnswerColor();
+      const { next } = this.state;
+      const { difficulty } = questions[next];
+      const numberTen = 10;
+
+      const questionLevels = {
+        hard: 3,
+        medium: 2,
+        easy: 1,
+      };
+
+      /* abaixo eu pego objeto que criei e transformo num array, em que cada index é um arrayzinho tipo
+      ['medium', '2']. Uso o find pra me retornar o arrayzinho que o indice[0] for igual o nivel da
+      dificuldade da pergunta atual */
+      const levelScore = Object.entries(questionLevels)
+        .find((level) => level[0] === difficulty);
+
+      /* Abaixo faço o calculo(que esta no ReadMe) usando o indice[1] do arrayzinho pra pegar quantos
+      pontos o nivel de dificuldade da pergunta atual vale */
+      const calculateScore = numberTen + (timerValue * levelScore[1]);
+      localStorage.setItem('score', calculateScore);
+      console.log(calculateScore);
     }
 
     render() {
@@ -108,6 +139,7 @@ Questions.propTypes = {
     length: PropTypes.number,
     category: PropTypes.string,
     question: PropTypes.string,
+    difficulty: PropTypes.string,
   })).isRequired,
 };
 
