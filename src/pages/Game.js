@@ -7,7 +7,7 @@ import Questions from '../components/Questions';
 
 class Game extends Component {
   async componentDidMount() {
-    const { getQuestions } = this.props;
+    const { getQuestions, getMapToken } = this.props;
     await getQuestions(getMapToken);
   }
 
@@ -26,6 +26,7 @@ class Game extends Component {
 }
 
 Game.propTypes = {
+  getMapToken: PropTypes.string.isRequired,
   getQuestions: PropTypes.func.isRequired,
 };
 
