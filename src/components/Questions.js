@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Questions extends Component {
-    state= {
+    state = {
       next: 0,
+      nextButtonVisible: false,
     }
 
     nextQuestionClick = () => {
@@ -18,6 +19,7 @@ class Questions extends Component {
         }));
       }
       this.removeAnswerBorder();
+      this.setState({ nextButtonVisible: false });
     }
 
     generateAnswers = (questions) => {
@@ -60,6 +62,8 @@ class Questions extends Component {
 
       const wrongButtons = document.querySelectorAll('.wrong-buttons');
       wrongButtons.forEach((element) => element.classList.add('wrong-color'));
+
+      this.setState({ nextButtonVisible: true });
     }
 
     removeAnswerBorder = () => {
@@ -71,10 +75,18 @@ class Questions extends Component {
     }
 
     render() {
-      const { next } = this.state;
+      const { next, nextButtonVisible } = this.state;
       const { questions } = this.props;
+      const nextButton = (
+        <button
+          data-testid="btn-next"
+          type="button"
+          onClick={ this.nextQuestionClick }
+        >
+          Next
+        </button>
+      );
       if (questions.length === 0) {
-        console.log(questions);
         return <p>loading</p>;
       }
       return (
@@ -84,12 +96,8 @@ class Questions extends Component {
           <div data-testid="answer-options" id="answers-div">
             {questions && this.generateAnswers(questions)}
           </div>
-          <button
-            type="button"
-            onClick={ this.nextQuestionClick }
-          >
-            Next
-          </button>
+          {nextButtonVisible
+          && nextButton}
         </div>
       );
     }
