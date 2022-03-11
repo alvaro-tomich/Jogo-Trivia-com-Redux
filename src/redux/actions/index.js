@@ -25,8 +25,16 @@ export const fetchTokenThunk = () => async (dispatch) => {
   dispatch(getToken(token));
 };
 
-export const fetchQuestionsThunk = () => async (dispatch) => {
-  const token = await fetchToken();
+export const fetchQuestionsThunk = (token) => async (dispatch) => {
   const questions = await fetchQuestions(token);
+  console.log(questions, 'XABLAAAAAAAU');
+  if (questions.length === 0) {
+    console.log('TESTEEEEE');
+    const tokenGet = await fetchToken();
+    dispatch(getToken(tokenGet));
+    localStorage.setItem('token', tokenGet);
+    const questionsGet = await fetchQuestions(tokenGet);
+    await dispatch(getQuestions(questionsGet));
+  }
   await dispatch(getQuestions(questions));
 };

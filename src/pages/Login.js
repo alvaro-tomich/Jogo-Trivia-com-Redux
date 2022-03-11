@@ -22,11 +22,11 @@ class Login extends Component {
     }
   }
 
-  handleClick = (event) => {
+  handleClick = async (event) => {
     event.preventDefault();
     const { getToken, history, getMapToken, playerInfo } = this.props;
     const { name, email } = this.state;
-    getToken();
+    await getToken();
     playerInfo(email, name);
     if (getMapToken) {
       localStorage.setItem('token', getMapToken);
@@ -96,7 +96,7 @@ Login.propTypes = {
   getMapToken: PropTypes.string.isRequired,
   getToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func,
+    push: PropTypes.func.isRequired,
   }).isRequired,
   playerInfo: PropTypes.func.isRequired,
 };
