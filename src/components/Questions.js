@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getPlayerScore } from '../redux/actions';
 
 class Questions extends Component {
     state = {
@@ -49,7 +50,6 @@ class Questions extends Component {
       if (timer === 0) {
         isAnswersBtnDisabled = true;
       }
-      const orderNumber = 0.5;
       const wrongAnswers = questions[next].incorrect_answers
         .map((answer, index) => (
           <button
@@ -68,7 +68,7 @@ class Questions extends Component {
           key="correct"
           type="button"
           data-testid="correct-answer"
-          onClick={ this.changeAnswerColor }
+          onClick={ this.increaseScore }
           className="correct-button"
           disabled={ isAnswersBtnDisabled }
         >
@@ -77,6 +77,11 @@ class Questions extends Component {
         ...wrongAnswers,
       ];
 
+      /* const orderNumber = 0.5;
+      const randomNumber = () => Math.round(Math.random() - orderNumber);
+      const randomArr = arrOfAnswers.sort(this.randomNumber);
+      return randomArr; */
+      const orderNumber = 0.5;
       function randOrd() {
         return (Math.round(Math.random()) - orderNumber);
       }
@@ -98,6 +103,31 @@ class Questions extends Component {
 
       const wrongButtons = document.querySelectorAll('.wrong-buttons');
       wrongButtons.forEach((element) => element.classList.remove('wrong-color'));
+    }
+
+    increaseScore = () => {
+      this.changeAnswerColor();
+
+      const { next, timer } = this.state;
+      const { questions, playerScore, dispatch } = this.props;
+
+      const { difficulty } = questions[next];
+      const numberTen = 10;
+
+      const questionLevels = {
+        hard: 3,
+        medium: 2,
+        easy: 1,
+      };
+
+      const levelScore = Object.entries(questionLevels)
+        .find((level) => level[0] === difficulty);
+
+      const calculateScore = numberTen + (timer * levelScore[1]);
+      localStorage.setItem('score', calculateScore);
+
+      dispatch(getPlayerScore(playerScore + calculateScore));
+      console.log(playerScore + calculateScore);
     }
 
     render() {
@@ -140,11 +170,15 @@ Questions.propTypes = {
     length: PropTypes.number,
     category: PropTypes.string,
     question: PropTypes.string,
+    difficulty: PropTypes.string,
   })).isRequired,
+  playerScore: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   questions: state.questions,
+  playerScore: state.player.score,
 });
 
 export default connect(mapStateToProps)(Questions);
