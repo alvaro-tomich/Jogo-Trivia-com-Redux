@@ -20,6 +20,11 @@ export const getPlayerInfo = (email, name) => ({
   },
 });
 
+export const getPlayerScore = (playerScore) => ({
+  type: 'SAVE_SCORE',
+  payload: playerScore,
+});
+
 export const fetchTokenThunk = () => async (dispatch) => {
   const token = await fetchToken();
   dispatch(getToken(token));
@@ -27,9 +32,7 @@ export const fetchTokenThunk = () => async (dispatch) => {
 
 export const fetchQuestionsThunk = (token) => async (dispatch) => {
   const questions = await fetchQuestions(token);
-  console.log(questions, 'XABLAAAAAAAU');
   if (questions.length === 0) {
-    console.log('TESTEEEEE');
     const tokenGet = await fetchToken();
     dispatch(getToken(tokenGet));
     localStorage.setItem('token', tokenGet);

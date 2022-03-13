@@ -18,7 +18,7 @@ class Game extends Component {
           <Header />
         </div>
         <div>
-          <Questions />
+          <Questions { ...this.props } />
         </div>
       </div>
     );

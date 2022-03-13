@@ -13,6 +13,11 @@ const player = (state = INITIAL_STATE, action) => {
       gravatarEmail: action.payload.email,
       name: action.payload.name,
     };
+  case 'SAVE_SCORE':
+    return {
+      ...state,
+      score: action.payload,
+    };
   default:
     return state;
   }

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getPlayerScore } from '../redux/actions';
 
 class Questions extends Component {
     state = {
@@ -33,11 +34,7 @@ class Questions extends Component {
         }));
       }
       this.removeAnswerBorder();
-      this.setState({ nextButtonVisible: false });
-
-      /* estou chamando abaixo a função que guarda o placar só pra testar o valor do calculo, quando clica no next
-      ele exibe um console.log com o valor que vamos exibir no Header depois */
-      this.increaseScore(questions, 2);
+      this.setState({ nextButtonVisible: false, timer: 30 });
     }
 
     generateAnswers = (questions) => {
@@ -46,7 +43,6 @@ class Questions extends Component {
       if (timer === 0) {
         isAnswersBtnDisabled = true;
       }
-      const orderNumber = 0.5;
       const wrongAnswers = questions[next].incorrect_answers
         .map((answer, index) => (
           <button
@@ -65,9 +61,7 @@ class Questions extends Component {
           key="correct"
           type="button"
           data-testid="correct-answer"
-          /* a função de placar deveria ser chamada nesse onclick mas quando tentei chamar ela quebrou, por
-          isso chamei ela no botão next */
-          onClick={ this.changeAnswerColor }
+          onClick={ this.increaseScore }
           className="correct-button"
           disabled={ isAnswersBtnDisabled }
         >
@@ -76,6 +70,11 @@ class Questions extends Component {
         ...wrongAnswers,
       ];
 
+      /* const orderNumber = 0.5;
+      const randomNumber = () => Math.round(Math.random() - orderNumber);
+      const randomArr = arrOfAnswers.sort(this.randomNumber);
+      return randomArr; */
+      const orderNumber = 0.5;
       function randOrd() {
         return (Math.round(Math.random()) - orderNumber);
       }
@@ -99,10 +98,12 @@ class Questions extends Component {
       wrongButtons.forEach((element) => element.classList.remove('wrong-color'));
     }
 
-    /* funçao pra aumentar o placar no header */
-    increaseScore = (questions, timerValue) => {
+    increaseScore = () => {
       this.changeAnswerColor();
-      const { next } = this.state;
+
+      const { next, timer } = this.state;
+      const { questions, playerScore, dispatch } = this.props;
+
       const { difficulty } = questions[next];
       const numberTen = 10;
 
@@ -112,17 +113,14 @@ class Questions extends Component {
         easy: 1,
       };
 
-      /* abaixo eu pego objeto que criei e transformo num array, em que cada index é um arrayzinho tipo
-      ['medium', '2']. Uso o find pra me retornar o arrayzinho que o indice[0] for igual o nivel da
-      dificuldade da pergunta atual */
       const levelScore = Object.entries(questionLevels)
         .find((level) => level[0] === difficulty);
 
-      /* Abaixo faço o calculo(que esta no ReadMe) usando o indice[1] do arrayzinho pra pegar quantos
-      pontos o nivel de dificuldade da pergunta atual vale */
-      const calculateScore = numberTen + (timerValue * levelScore[1]);
+      const calculateScore = numberTen + (timer * levelScore[1]);
       localStorage.setItem('score', calculateScore);
-      console.log(calculateScore);
+
+      dispatch(getPlayerScore(playerScore + calculateScore));
+      console.log(playerScore + calculateScore);
     }
 
     render() {
@@ -164,10 +162,13 @@ Questions.propTypes = {
     question: PropTypes.string,
     difficulty: PropTypes.string,
   })).isRequired,
+  playerScore: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   questions: state.questions,
+  playerScore: state.player.score,
 });
 
 export default connect(mapStateToProps)(Questions);
