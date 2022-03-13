@@ -1,6 +1,11 @@
 import { fetchToken, fetchQuestions } from '../../services/api';
-
-export const GET_API_QUESTIONS = 'GET_API_QUESTIONS';
+import {
+  GET_TOKEN,
+  SAVE_PLAYER,
+  SAVE_SCORE,
+  GET_ASSERTIONS,
+  GET_API_QUESTIONS,
+} from './actionTypes';
 
 const getQuestions = (questions) => ({
   type: GET_API_QUESTIONS,
@@ -8,12 +13,12 @@ const getQuestions = (questions) => ({
 });
 
 const getToken = (token) => ({
-  type: 'GET_TOKEN',
+  type: GET_TOKEN,
   payload: token,
 });
 
 export const getPlayerInfo = (email, name) => ({
-  type: 'SAVE_PLAYER',
+  type: SAVE_PLAYER,
   payload: {
     email,
     name,
@@ -21,8 +26,13 @@ export const getPlayerInfo = (email, name) => ({
 });
 
 export const getPlayerScore = (playerScore) => ({
-  type: 'SAVE_SCORE',
+  type: SAVE_SCORE,
   payload: playerScore,
+});
+
+export const getAssertions = () => ({
+  type: GET_ASSERTIONS,
+  payload: getAssertions,
 });
 
 export const fetchTokenThunk = () => async (dispatch) => {

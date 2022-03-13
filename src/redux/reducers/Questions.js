@@ -1,4 +1,4 @@
-import { GET_API_QUESTIONS } from '../actions';
+import { GET_API_QUESTIONS } from '../actions/actionTypes';
 
 const INITIAL_STATE = [];
 
