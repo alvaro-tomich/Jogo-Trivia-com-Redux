@@ -6,7 +6,7 @@ import md5 from 'crypto-js/md5';
 class Header extends Component {
   render() {
     const { playerInfo } = this.props;
-    const { name, gravatarEmail } = playerInfo;
+    const { name, gravatarEmail, score } = playerInfo;
     const convertedEmail = md5(gravatarEmail).toString();
     return (
       <div>
@@ -16,11 +16,11 @@ class Header extends Component {
           data-testid="header-profile-picture"
         />
         <p data-testid="header-player-name">{ name }</p>
-        <p
-          data-testid="header-score"
-        >
-          0
-
+        <p>
+          Score:
+          <span data-testid="header-score">
+            { score }
+          </span>
         </p>
       </div>
     );
@@ -31,6 +31,7 @@ Header.propTypes = {
   playerInfo: PropTypes.shape({
     gravatarEmail: PropTypes.string,
     name: PropTypes.string,
+    score: PropTypes.number,
   }).isRequired,
 };
 

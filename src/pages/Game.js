@@ -19,7 +19,7 @@ class Game extends Component {
           <Header />
         </div>
         <div>
-          <Questions />
+          <Questions { ...this.props } />
           <Link to="/ranking">
             <button
               type="button"
