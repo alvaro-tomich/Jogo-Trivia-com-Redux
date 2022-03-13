@@ -30,9 +30,9 @@ export const getPlayerScore = (playerScore) => ({
   payload: playerScore,
 });
 
-export const getAssertions = () => ({
+export const getAssertions = (assertions) => ({
   type: GET_ASSERTIONS,
-  payload: getAssertions,
+  payload: assertions,
 });
 
 export const fetchTokenThunk = () => async (dispatch) => {

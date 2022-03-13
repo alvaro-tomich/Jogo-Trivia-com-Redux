@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPlayerScore } from '../redux/actions';
+import { getAssertions, getPlayerScore } from '../redux/actions';
 
 class Questions extends Component {
     state = {
@@ -77,10 +77,6 @@ class Questions extends Component {
         ...wrongAnswers,
       ];
 
-      /* const orderNumber = 0.5;
-      const randomNumber = () => Math.round(Math.random() - orderNumber);
-      const randomArr = arrOfAnswers.sort(this.randomNumber);
-      return randomArr; */
       const orderNumber = 0.5;
       function randOrd() {
         return (Math.round(Math.random()) - orderNumber);
@@ -109,10 +105,13 @@ class Questions extends Component {
       this.changeAnswerColor();
 
       const { next, timer } = this.state;
-      const { questions, playerScore, dispatch } = this.props;
-
-      const { difficulty } = questions[next];
-      const numberTen = 10;
+      const {
+        questions,
+        playerScore,
+        addPlayerScore,
+        assertions,
+        addAssertions,
+      } = this.props;
 
       const questionLevels = {
         hard: 3,
@@ -120,14 +119,18 @@ class Questions extends Component {
         easy: 1,
       };
 
+      const { difficulty } = questions[next];
       const levelScore = Object.entries(questionLevels)
         .find((level) => level[0] === difficulty);
 
+      const numberTen = 10;
       const calculateScore = numberTen + (timer * levelScore[1]);
       localStorage.setItem('score', calculateScore);
 
-      dispatch(getPlayerScore(playerScore + calculateScore));
-      console.log(playerScore + calculateScore);
+      const assertionsTotal = assertions + 1;
+      addAssertions(assertionsTotal);
+
+      addPlayerScore(playerScore + calculateScore);
     }
 
     render() {
@@ -162,23 +165,33 @@ class Questions extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+  questions: state.questions,
+  playerScore: state.player.score,
+  assertions: state.player.assertions,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addPlayerScore: (playerScore) => (
+    dispatch(getPlayerScore(playerScore))),
+  addAssertions: (assertions) => (
+    dispatch(getAssertions(assertions))),
+});
+
 Questions.propTypes = {
+  addPlayerScore: PropTypes.func.isRequired,
+  addAssertions: PropTypes.func.isRequired,
+  assertions: PropTypes.number.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  playerScore: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.shape({
     length: PropTypes.number,
     category: PropTypes.string,
     question: PropTypes.string,
     difficulty: PropTypes.string,
   })).isRequired,
-  playerScore: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  questions: state.questions,
-  playerScore: state.player.score,
-});
-
-export default connect(mapStateToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

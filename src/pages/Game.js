@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import { fetchQuestionsThunk, fetchTokenThunk } from '../redux/actions';
@@ -21,23 +20,6 @@ class Game extends Component {
         </div>
         <div>
           <Questions { ...this.props } history={ history } />
-          <Link to="/ranking">
-            <button
-              type="button"
-              data-testid="btn-ranking"
-            >
-              Ranking
-
-            </button>
-          </Link>
-          <Link to="/">
-            <button
-              type="button"
-              data-testid="btn-play-again"
-            >
-              Play Again
-            </button>
-          </Link>
         </div>
       </div>
     );
