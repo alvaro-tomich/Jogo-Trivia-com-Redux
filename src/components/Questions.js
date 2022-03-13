@@ -26,7 +26,7 @@ class Questions extends Component {
 
     nextQuestionClick = () => {
       const { next } = this.state;
-      const { questions } = this.props;
+      const { questions, history } = this.props;
       const maxNumber = questions.length - 2;
       if (next <= maxNumber) {
         this.setState((prevState) => ({
@@ -34,7 +34,14 @@ class Questions extends Component {
         }));
       }
       this.removeAnswerBorder();
-      this.setState({ nextButtonVisible: false, timer: 30 });
+      this.setState({
+        nextButtonVisible: false,
+        timer: 30,
+      });
+      const maxNextBtnNumber = 4;
+      if (next === maxNextBtnNumber) {
+        history.push('/feedback');
+      }
     }
 
     generateAnswers = (questions) => {
@@ -156,6 +163,9 @@ class Questions extends Component {
 }
 
 Questions.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   questions: PropTypes.arrayOf(PropTypes.shape({
     length: PropTypes.number,
     category: PropTypes.string,

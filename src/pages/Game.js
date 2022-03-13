@@ -13,13 +13,14 @@ class Game extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <div>
         <div>
           <Header />
         </div>
         <div>
-          <Questions { ...this.props } />
+          <Questions { ...this.props } history={ history } />
           <Link to="/ranking">
             <button
               type="button"
@@ -35,7 +36,6 @@ class Game extends Component {
               data-testid="btn-play-again"
             >
               Play Again
-
             </button>
           </Link>
         </div>
@@ -47,6 +47,7 @@ class Game extends Component {
 Game.propTypes = {
   getMapToken: PropTypes.string.isRequired,
   getQuestions: PropTypes.func.isRequired,
+  history: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
