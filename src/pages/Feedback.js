@@ -11,16 +11,22 @@ class Feedback extends Component {
       <div>
         <Header />
         <p>
-          Score:
+          Você tem
+          {' '}
           <span data-testid="feedback-total-score">
             { playerScore }
           </span>
+          {' '}
+          pontos!
         </p>
         <p>
-          Assertions:
+          Você acertou
+          {' '}
           <span data-testid="feedback-total-question">
             { assertions }
           </span>
+          {' '}
+          questões!
         </p>
         {
           assertions <= 2
@@ -42,7 +48,7 @@ class Feedback extends Component {
             type="button"
             data-testid="btn-play-again"
           >
-            Play Again
+            Jogar novamente
           </button>
         </Link>
 

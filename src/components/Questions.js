@@ -77,6 +77,7 @@ class Questions extends Component {
         ...wrongAnswers,
       ];
 
+      // mudar nome dessa função e colocar referẽncia
       const orderNumber = 0.5;
       function randOrd() {
         return (Math.round(Math.random()) - orderNumber);
@@ -84,6 +85,7 @@ class Questions extends Component {
       return arrOfAnswers.sort(randOrd);
     }
 
+    // Refatorar para deixar dinâmico sem manipular o DOM
     changeAnswerColor = () => {
       const correctButton = document.querySelector('.correct-button');
       correctButton.classList.add('correct-color');
@@ -146,13 +148,13 @@ class Questions extends Component {
         </button>
       );
       if (questions.length === 0) {
-        return <p>loading</p>;
+        return <p>Carregando...</p>;
       }
       return (
-        <div>
-          <header>
-            <p>{ timer }</p>
-          </header>
+        <div className="body-questions">
+          <p>
+            <span>{ timer }</span>
+          </p>
           <p data-testid="question-category">{ questions[next].category }</p>
           <p data-testid="question-text">{ questions[next].question }</p>
           <div data-testid="answer-options" id="answers-div">

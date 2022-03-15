@@ -14,14 +14,14 @@ class Game extends Component {
   render() {
     const { history } = this.props;
     return (
-      <div>
+      <section>
         <div>
           <Header />
         </div>
-        <div>
+        <div className="questions">
           <Questions { ...this.props } history={ history } />
         </div>
-      </div>
+      </section>
     );
   }
 }

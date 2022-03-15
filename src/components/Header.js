@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import '../style/header.css';
 
 class Header extends Component {
   render() {
@@ -9,20 +10,30 @@ class Header extends Component {
     const { name, gravatarEmail, score } = playerInfo;
     const convertedEmail = md5(gravatarEmail).toString();
     return (
-      <div>
-        <img
-          alt="player-icon"
-          src={ `https://www.gravatar.com/avatar/${convertedEmail}` }
-          data-testid="header-profile-picture"
-        />
-        <p data-testid="header-player-name">{ name }</p>
-        <p>
-          Score:
-          <span data-testid="header-score">
-            { score }
-          </span>
-        </p>
-      </div>
+      <header>
+        <div className="image-name">
+          <img
+            className="header-img"
+            alt="player-icon"
+            src={ `https://www.gravatar.com/avatar/${convertedEmail}` }
+            data-testid="header-profile-picture"
+          />
+          <p className="player">
+            Jogador(a):
+            {' '}
+            <span data-testid="header-player-name">{ name }</span>
+          </p>
+        </div>
+        <div>
+          <p className="points">
+            Pontos acumulados:
+            {' '}
+            <span data-testid="header-score">
+              { score }
+            </span>
+          </p>
+        </div>
+      </header>
     );
   }
 }

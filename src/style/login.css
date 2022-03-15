@@ -1,0 +1,61 @@
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  width: 280px;
+}
+
+.App-header {
+  align-items: center;
+  background-color: #036b52;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  justify-content: center;
+  min-height: 100vh;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form > button, input {
+  border: none;
+  border-radius: 5px;
+  font-family: Courier New , Courier , monospace;
+  height: 30px;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.App-header img {
+  width: 300px;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .App-logo {
+    animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+}
+
+@keyframes shake {
+
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
