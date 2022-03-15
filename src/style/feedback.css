@@ -1,0 +1,10 @@
+* {
+  margin: 0%;
+}
+
+.container-feedback {
+  display: flex;
+  flex-direction: column;
+  font-family: Courier New , Courier , monospace;
+  justify-content: space-between;
+}

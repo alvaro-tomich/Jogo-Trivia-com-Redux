@@ -3,14 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import '../style/feedback.css';
 
 class Feedback extends Component {
   render() {
     const { assertions, playerScore } = this.props;
     return (
-      <div>
+      <div className="container-feedback">
         <Header />
-        <p>
+        <h2>
           Você tem
           {' '}
           <span data-testid="feedback-total-score">
@@ -18,8 +19,8 @@ class Feedback extends Component {
           </span>
           {' '}
           pontos!
-        </p>
-        <p>
+        </h2>
+        <h2>
           Você acertou
           {' '}
           <span data-testid="feedback-total-question">
@@ -27,11 +28,11 @@ class Feedback extends Component {
           </span>
           {' '}
           questões!
-        </p>
+        </h2>
         {
           assertions <= 2
-            ? <p data-testid="feedback-text">Could be better...</p>
-            : <p data-testid="feedback-text">Well Done!</p>
+            ? <h2 data-testid="feedback-text">Could be better...</h2>
+            : <h2 data-testid="feedback-text">Well Done!</h2>
 
         }
         <Link to="/ranking">

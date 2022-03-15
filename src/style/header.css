@@ -3,7 +3,7 @@
 }
 
 header {
-  align-items: flex-end;
+  align-items: center;
   background-color: #036b52;
   display: flex;
   flex-direction: row;
@@ -16,7 +16,7 @@ header {
   border-radius: 50%;
   display: flex;
   margin: auto;
-  margin-left: 600px;
+  margin-left: 630px;
   width: 100px;
 }
 
@@ -25,5 +25,5 @@ header {
 }
 
 .player {
-  margin-right: 400px;
+  margin-right: 500px;
 }

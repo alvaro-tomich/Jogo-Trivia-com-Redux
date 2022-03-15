@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAssertions, getPlayerScore } from '../redux/actions';
+import '../style/questions.css';
 
 class Questions extends Component {
     state = {
@@ -77,12 +78,12 @@ class Questions extends Component {
         ...wrongAnswers,
       ];
 
-      // mudar nome dessa função e colocar referẽncia
+      // Função que gera números aleatórios a ser usado no sort() para renderizar respostas em ordem aleatória. Referência: https://ichi.pro/pt/como-obter-um-item-aleatorio-de-um-array-javascript-140857367711251
       const orderNumber = 0.5;
-      function randOrd() {
-        return (Math.round(Math.random()) - orderNumber);
-      }
-      return arrOfAnswers.sort(randOrd);
+      // function generateRandomNumbers() {
+      //   return (Math.round(Math.random()) - orderNumber);
+      // }
+      return arrOfAnswers.sort(() => orderNumber - Math.random());
     }
 
     // Refatorar para deixar dinâmico sem manipular o DOM
@@ -152,11 +153,11 @@ class Questions extends Component {
       }
       return (
         <div className="body-questions">
-          <p>
+          <section className="timer">
             <span>{ timer }</span>
-          </p>
-          <p data-testid="question-category">{ questions[next].category }</p>
-          <p data-testid="question-text">{ questions[next].question }</p>
+          </section>
+          <h3 data-testid="question-category">{ questions[next].category }</h3>
+          <h2 data-testid="question-text">{ questions[next].question }</h2>
           <div data-testid="answer-options" id="answers-div">
             {questions && this.generateAnswers(questions)}
           </div>
