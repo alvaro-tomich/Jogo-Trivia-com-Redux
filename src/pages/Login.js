@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTokenThunk, getPlayerInfo } from '../redux/actions/index';
+import { fetchTokenThunk, getPlayerInfo, getAssertions, getPlayerScore }
+from '../redux/actions/index';
 import logo from '../trivia.png';
 import '../style/login.css';
 
@@ -23,8 +24,15 @@ class Login extends Component {
     }
   }
 
+  resetAssertionsAndScore = () => {
+    const { addPlayerScore, addAssertions } = this.props;
+    addPlayerScore(0);
+    addAssertions(0);
+  }
+
   handleClick = async (event) => {
     event.preventDefault();
+    this.resetAssertionsAndScore();
     const { getToken, history, getMapToken, playerInfo } = this.props;
     const { name, email } = this.state;
     await getToken();
@@ -91,6 +99,10 @@ const mapDispatchToProps = (dispatch) => ({
   getToken: () => (
     dispatch(fetchTokenThunk())),
   playerInfo: (email, name) => dispatch(getPlayerInfo(email, name)),
+  addPlayerScore: (playerScore) => (
+    dispatch(getPlayerScore(playerScore))),
+  addAssertions: (assertions) => (
+    dispatch(getAssertions(assertions))),
 });
 
 const mapStateToProps = (state) => ({
@@ -98,6 +110,8 @@ const mapStateToProps = (state) => ({
 });
 
 Login.propTypes = {
+  addAssertions: PropTypes.func.isRequired,
+  addPlayerScore: PropTypes.func.isRequired,
   getMapToken: PropTypes.arrayOf(PropTypes.string).isRequired,
   getToken: PropTypes.func.isRequired,
   history: PropTypes.shape({
