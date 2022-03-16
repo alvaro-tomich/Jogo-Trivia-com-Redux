@@ -59,6 +59,8 @@ class Questions extends Component {
       if (next === maxNextBtnNumber) {
         history.push('/feedback');
       }
+
+      this.enableAnswers();
     }
 
     generateAnswers = (questions) => {
@@ -121,6 +123,16 @@ class Questions extends Component {
       const wrongButtons = document.querySelectorAll(wrongAnswerStr);
       wrongButtons.forEach((element) => {
         element.disabled = true;
+      });
+    }
+
+    enableAnswers = () => {
+      const correctButton = document.querySelector(correctAnswerStr);
+      correctButton.disabled = false;
+
+      const wrongButtons = document.querySelectorAll(wrongAnswerStr);
+      wrongButtons.forEach((element) => {
+        element.disabled = false;
       });
     }
 
