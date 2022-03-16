@@ -1,0 +1,29 @@
+* {
+  margin: 0%;
+}
+
+header {
+  align-items: center;
+  background-color: #036b52;
+  display: flex;
+  flex-direction: row;
+  font-family: Courier New , Courier , monospace;
+  justify-content: space-between;
+}
+
+.header-img {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  margin: auto;
+  margin-left: 630px;
+  width: 100px;
+}
+
+.points {
+  margin-right: 80px;
+}
+
+.player {
+  margin-right: 500px;
+}

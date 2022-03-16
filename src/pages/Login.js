@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTokenThunk, getPlayerInfo } from '../redux/actions/index';
 import logo from '../trivia.png';
+import '../style/login.css';
 
 class Login extends Component {
   state = {
@@ -44,13 +45,16 @@ class Login extends Component {
     const { name, email } = this.state;
     return (
       <div className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <form>
+        <div className="title">
+          <img src={ logo } className="App-logo" alt="logo" />
+        </div>
+        <form className="form-login">
           <label htmlFor="email">
             <input
               type="email"
               name="email"
               data-testid="input-gravatar-email"
+              placeholder="Digite seu email"
               onChange={ this.handleChange }
             />
           </label>
@@ -58,6 +62,7 @@ class Login extends Component {
             <input
               name="name"
               data-testid="input-player-name"
+              placeholder="Digite seu nome"
               onChange={ this.handleChange }
             />
           </label>
