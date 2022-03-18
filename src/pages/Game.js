@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
+import '../style/game.css';
 
 class Game extends Component {
   render() {
     const { history } = this.props;
     return (
-      <section>
+      <section className="game-page">
         <div>
           <Header />
         </div>

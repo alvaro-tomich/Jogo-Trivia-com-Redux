@@ -4,26 +4,26 @@
 
 header {
   align-items: center;
-  background-color: #036b52;
+  background-color: black;
   display: flex;
   flex-direction: row;
   font-family: Courier New , Courier , monospace;
+  font-size: 10px;
+  height: 50px;
   justify-content: space-between;
 }
 
 .header-img {
-  align-items: center;
   border-radius: 50%;
   display: flex;
   margin: auto;
-  margin-left: 630px;
-  width: 100px;
+  width: 30px;
 }
 
 .points {
-  margin-right: 80px;
+  padding: 10px;
 }
 
 .player {
-  margin-right: 500px;
+  padding-right: 910px;
 }
