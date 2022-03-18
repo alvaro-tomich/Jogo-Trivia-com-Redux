@@ -5,6 +5,7 @@
 header {
   align-items: center;
   background-color: black;
+  color: white;
   display: flex;
   flex-direction: row;
   font-family: Courier New , Courier , monospace;
