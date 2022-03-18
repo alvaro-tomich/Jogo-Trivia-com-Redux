@@ -9,7 +9,8 @@ header {
   display: flex;
   flex-direction: row;
   font-family: Courier New , Courier , monospace;
-  font-size: 10px;
+  font-size: 1em;
+  font-weight: 801;
   height: 50px;
   justify-content: space-between;
 }
