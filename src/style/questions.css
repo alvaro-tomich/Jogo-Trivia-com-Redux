@@ -5,9 +5,10 @@
   color: white;
   font-family: Courier New , Courier , monospace;
   font-size: 1em;
+  font-weight: 700;
   height: 40px;
   margin-top: 20px;
-  width: 150px;
+  width: 100px;
 }
 
 .wrong-buttons, .correct-button {
@@ -17,9 +18,10 @@
   color: white;
   font-family: Courier New , Courier , monospace;
   font-size: 1em;
+  font-weight: 700;
   height: 40px;
   margin-top: 20px;
-  width: 150px;
+  width: 500px;
 }
 
 .body-questions {
@@ -33,7 +35,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 330px;
+  width: 1030px;
 }
 
 .timer {
