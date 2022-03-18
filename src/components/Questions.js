@@ -176,6 +176,7 @@ class Questions extends Component {
           data-testid="btn-next"
           type="button"
           onClick={ this.nextQuestionClick }
+          className="next-button"
         >
           Next
         </button>
