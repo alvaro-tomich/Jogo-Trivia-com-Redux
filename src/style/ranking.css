@@ -5,3 +5,35 @@
 h1 {
   font-family: Courier New , Courier , monospace;
 }
+
+.ranking-page {
+  background-image: url('../images/finished-trivia.png');
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.ranking-board {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.player-ranking {
+  align-items: center;
+  background-color: rgba(84, 93, 97, 0.5);
+  border-radius: 15px;
+  display: flex;
+  height: 80px;
+  left: 450px;
+  margin-top: 20px;
+  position: relative;
+  width: 400px;
+}
+
+.player-name {
+  padding-left: 100px;
+}
+
+.player-score {
+  padding-left: 100px;
+}

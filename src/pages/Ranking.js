@@ -33,24 +33,41 @@ class Ranking extends Component {
     }
     ranking.sort((a, b) => b.score - a.score);
     return (
-      <div>
+      <div className="ranking-page">
         <h1 data-testid="ranking-title">Ranking Jogador</h1>
-        {(ranking
+        <div className="ranking-board">
+          {(ranking
           && (
             <>
               {ranking.map((curr, index) => (
-                <div key={ index }>
-                  <p data-testid={ `player-name-${index}` }>{ curr.name }</p>
-                  <p data-testid={ `player-score-${index}` }>{ curr.score }</p>
-                  <img src={ `https://www.gravatar.com/avatar/${md5(curr.email).toString()}` } alt="Gravathar Icon" />
+                <div className="player-ranking" key={ index }>
+                  <img
+                    className="player-image"
+                    src={ `https://www.gravatar.com/avatar/${md5(curr.email).toString()}` }
+                    alt="Gravathar Icon"
+                  />
+                  <p
+                    className="player-name"
+                    data-testid={ `player-name-${index}` }
+                  >
+                    { curr.name }
+                  </p>
+                  <p
+                    className="player-score"
+                    data-testid={ `player-score-${index}` }
+                  >
+                    { curr.score }
+                  </p>
                 </div>
               ))}
             </>
           ))}
+        </div>
         <Link to="/">
           <button
             type="button"
             data-testid="btn-go-home"
+            className="gohome-button"
           >
             Voltar ao início
           </button>
