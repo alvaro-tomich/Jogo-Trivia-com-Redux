@@ -18,12 +18,12 @@ class Header extends Component {
             src={ `https://www.gravatar.com/avatar/${convertedEmail}` }
             data-testid="header-profile-picture"
           />
-          <p className="player">
-            Jogador(a):
-            {' '}
-            <span data-testid="header-player-name">{ name }</span>
-          </p>
         </div>
+        <p className="player">
+          Jogador(a):
+          {' '}
+          <span data-testid="header-player-name">{ name }</span>
+        </p>
         <div>
           <p className="points">
             Pontos acumulados:

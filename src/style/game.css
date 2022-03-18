@@ -2,3 +2,9 @@
   margin: 0%;
 }
 
+.game-page {
+  background-image: url('../images/Fundo-poly.png');
+  background-size: cover;
+  min-height: 100vh;
+}
+

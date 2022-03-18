@@ -1,12 +1,7 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  width: 280px;
-}
-
 .App-header {
   align-items: center;
-  background-color: #036b52;
+  background-image: url('../images/crazy-girlfriend.jpg');
+  background-size: cover;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
@@ -14,11 +9,19 @@
   min-height: 100vh;
 }
 
+.App-logo {
+  height: 130px;
+}
+
 form {
   align-items: center;
+  background-color: rgba(84, 93, 97, 0.5);
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
+  height: 300px;
   justify-content: center;
+  width: 300px;
 }
 
 form > button, input {
@@ -34,12 +37,17 @@ form > button, input {
   width: 300px;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
+.edition-memes {
+  margin-top: -70px;
+  z-index: 1;
+}
+
+/* @media ( prefers-reduced-motion : no-preference ) {
 
   .App-logo {
     animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
-}
+} */
 
 @keyframes shake {
 

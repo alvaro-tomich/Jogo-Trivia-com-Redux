@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchTokenThunk, getPlayerInfo, getAssertions, getPlayerScore }
 from '../redux/actions/index';
 import logo from '../trivia.png';
+import memesEditions from '../images/edition-memes.png';
 import '../style/login.css';
 
 class Login extends Component {
@@ -56,6 +57,7 @@ class Login extends Component {
         <div className="title">
           <img src={ logo } className="App-logo" alt="logo" />
         </div>
+        <img src={ memesEditions } className="edition-memes" alt="phrase" />
         <form className="form-login">
           <label htmlFor="email">
             <input

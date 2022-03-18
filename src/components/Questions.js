@@ -176,6 +176,7 @@ class Questions extends Component {
           data-testid="btn-next"
           type="button"
           onClick={ this.nextQuestionClick }
+          className="next-button"
         >
           Next
         </button>
@@ -190,7 +191,7 @@ class Questions extends Component {
           </section>
           <h3 data-testid="question-category">{ questions[next].category }</h3>
           <h2 data-testid="question-text">{ questions[next].question }</h2>
-          <div data-testid="answer-options" id="answers-div">
+          <div data-testid="answer-options" id="answers-div" className="answers">
             {questions && answers}
           </div>
           {nextButtonVisible

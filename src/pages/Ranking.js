@@ -53,7 +53,6 @@ class Ranking extends Component {
             data-testid="btn-go-home"
           >
             Voltar ao início
-
           </button>
         </Link>
       </div>
