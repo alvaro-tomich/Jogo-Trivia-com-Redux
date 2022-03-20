@@ -1,10 +1,43 @@
-* {
-  margin: 0%;
+.container-feedback {
+  background-image: url('../images/acabou-trivia-jessica.png');
+  background-size: cover;
+  min-height: 100vh;
 }
 
-.container-feedback {
+.phrase {
+  border-color: black;
+  color: rgb(214, 39, 39);
+  font-size: 45px;
+  font-weight: 1000;
+  margin-bottom: 5px;
+  text-shadow: 0.2em 0.3em 0.1em #600;
+  -webkit-text-stroke: 1px rgb(226, 185, 1);
+}
+
+.feedback-phrase {
+  color: rgb(214, 39, 39);
+  font-weight: 1000;
+  -webkit-text-stroke: 1px rgb(207, 169, 1);
+}
+
+.h2-container {
   display: flex;
   flex-direction: column;
   font-family: Courier New , Courier , monospace;
-  justify-content: space-between;
+  margin-top: 125px;
 }
+
+.button-feedback {
+  background-color: #a33603;
+  border: 2px solid #bb7101;
+  border-radius: 5px;
+  color: rgb(235, 204, 101);
+  font-family: Courier New , Courier , monospace;
+  font-size: -1em;
+  font-weight: 600;
+  height: 35px;
+  margin: 10px;
+  margin-top: 20px;
+  width: 140px;
+}
+

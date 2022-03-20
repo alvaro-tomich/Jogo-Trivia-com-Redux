@@ -7,7 +7,7 @@ h1 {
 }
 
 .ranking-page {
-  background-image: url('../images/finished-trivia.png');
+  background-image: url('../images/mercury-pink.png');
   background-size: cover;
   min-height: 100vh;
 }
@@ -15,19 +15,25 @@ h1 {
 .ranking-board {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  padding-top: 80px;
 }
 
 .player-ranking {
   align-items: center;
-  background-color: rgba(84, 93, 97, 0.5);
+  background-color: rgb(211, 126, 214);
+  border: solid 2px black;
   border-radius: 15px;
+  color: rgb(221, 194, 43);
   display: flex;
+  font-family: Courier New , Courier , monospace;
+  font-size: 20px;
+  font-weight: 1000;
   height: 80px;
-  left: 450px;
-  margin-top: 20px;
+  left: 350px;
+  margin-top: 30px;
   position: relative;
-  width: 400px;
+  -webkit-text-stroke: 1px rgb(20, 20, 17);
+  width: 500px;
 }
 
 .player-name {
@@ -36,4 +42,22 @@ h1 {
 
 .player-score {
   padding-left: 100px;
+}
+
+.player-image {
+  border-radius: 17% 0 0 17%;
+}
+
+.gohome-button {
+  background-color: #0e0b0c;
+  border: 2px solid #e6028b;
+  border-radius: 5px;
+  color: rgb(236, 213, 5);
+  font-family: Courier New , Courier , monospace;
+  font-size: -1em;
+  font-weight: 1000;
+  height: 35px;
+  margin: 10px;
+  margin-top: 20px;
+  width: 140px;
 }
