@@ -1,0 +1,12 @@
+.not-found {
+  background-image: url('../images/sapo-triste.jpg');
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.error {
+  color: red;
+  font-weight: 1000;
+  padding-top: 130px;
+  -webkit-text-stroke: 1px rgb(50, 216, 9);
+}

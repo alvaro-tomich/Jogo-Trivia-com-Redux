@@ -68,25 +68,23 @@ class Questions extends Component {
       const wrongAnswers = questions[next].incorrect_answers
         .map((answer, index) => (
           <button
+            dangerouslySetInnerHTML={ { __html: answer } }
             key={ index }
             type="button"
             data-testid={ `wrong-answer-${index}` }
             onClick={ this.changeAnswerColor }
             className="wrong-buttons"
-          >
-            { answer }
-          </button>
+          />
         ));
       const arrOfAnswers = [
         <button
+          dangerouslySetInnerHTML={ { __html: questions[next].correct_answer } }
           key="correct"
           type="button"
           data-testid="correct-answer"
           onClick={ this.increaseScore }
           className="correct-button"
-        >
-          {questions[next].correct_answer }
-        </button>,
+        />,
         ...wrongAnswers,
       ];
 
@@ -189,8 +187,15 @@ class Questions extends Component {
           <section className="timer">
             <span>{ timer }</span>
           </section>
-          <h3 data-testid="question-category">{ questions[next].category }</h3>
-          <h2 data-testid="question-text">{ questions[next].question }</h2>
+          <h3
+            data-testid="question-category"
+            className="question-category"
+            dangerouslySetInnerHTML={ { __html: questions[next].category } }
+          />
+          <h2
+            data-testid="question-text"
+            dangerouslySetInnerHTML={ { __html: questions[next].question } }
+          />
           <div data-testid="answer-options" id="answers-div" className="answers">
             {questions && answers}
           </div>

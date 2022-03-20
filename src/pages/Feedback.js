@@ -11,48 +11,52 @@ class Feedback extends Component {
     return (
       <div className="container-feedback">
         <Header />
-        <h2>
-          Você tem
-          {' '}
-          <span data-testid="feedback-total-score">
-            { playerScore }
-          </span>
-          {' '}
-          pontos!
-        </h2>
-        <h2>
-          Você acertou
-          {' '}
-          <span data-testid="feedback-total-question">
-            { assertions }
-          </span>
-          {' '}
-          questões!
-        </h2>
-        {
-          assertions <= 2
-            ? <h2 data-testid="feedback-text">Could be better...</h2>
-            : <h2 data-testid="feedback-text">Well Done!</h2>
+        <div className="h2-container">
+          {
+            assertions <= 2
+              ? <h2 data-testid="feedback-text" className="phrase">Could be better...</h2>
+              : <h2 data-testid="feedback-text" className="phrase">Well Done!</h2>
 
-        }
-        <Link to="/ranking">
-          <button
-            type="button"
-            data-testid="btn-ranking"
-          >
-            Ranking
-
-          </button>
-        </Link>
-        <Link to="/">
-          <button
-            type="button"
-            data-testid="btn-play-again"
-          >
-            Jogar novamente
-          </button>
-        </Link>
-
+          }
+          <h2 className="feedback-phrase">
+            Você tem
+            {' '}
+            <span data-testid="feedback-total-score">
+              { playerScore }
+            </span>
+            {' '}
+            pontos!
+          </h2>
+          <h2 className="feedback-phrase">
+            Você acertou
+            {' '}
+            <span data-testid="feedback-total-question">
+              { assertions }
+            </span>
+            {' '}
+            questões!
+          </h2>
+        </div>
+        <div className="buttons-container">
+          <Link to="/ranking">
+            <button
+              type="button"
+              data-testid="btn-ranking"
+              className="button-feedback"
+            >
+              Ranking
+            </button>
+          </Link>
+          <Link to="/">
+            <button
+              type="button"
+              data-testid="btn-play-again"
+              className="button-feedback"
+            >
+              Jogar Novamente
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }

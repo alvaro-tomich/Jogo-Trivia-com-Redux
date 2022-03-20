@@ -34,7 +34,7 @@ class Ranking extends Component {
     ranking.sort((a, b) => b.score - a.score);
     return (
       <div className="ranking-page">
-        <h1 data-testid="ranking-title">Ranking Jogador</h1>
+        <p data-testid="ranking-title" />
         <div className="ranking-board">
           {(ranking
           && (
