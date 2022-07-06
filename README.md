@@ -18,7 +18,7 @@ Conhecimentos consolidados durante o desenvolvimento:
   * CSS;
   * Redux;
   * JavaScript;
-  * LocalStorage;
+  * LocalStorage.
 
 Metodologias e ferramentas utilizadas no trabalho em equipe:
 
@@ -30,11 +30,11 @@ Metodologias e ferramentas utilizadas no trabalho em equipe:
 
 SoftSkills desenvolvidas:
   
-  *Comunicação;
-  *Empatia;
-  *Colaboração;
-  *Escuta ativa;
-  *Criatividade;
+  * Comunicação;
+  * Empatia;
+  * Colaboração;
+  * Escuta ativa;
+  * Criatividade.
 
 O que foi desenvolvido por cada integrante:
 
@@ -43,10 +43,13 @@ O que foi desenvolvido por cada integrante:
 Como você pode testar essa aplicação localmente:
 
   Clone o repositório na sua máquina utilizando o seguinte código:
+
   ```gitClone git@github.com:alvaro-tomich/Jogo-Trivia-com-Redux.git```
 
   Para abrir a aplicação abra a pasta do projeto clonado no vscode, abra o terminal do vscode e execute os seguintes comandos;
+
   ```npm install``` para instalar as dependências da aplicação;
+
   ```npm start``` para iniciar a aplicação.
 
 Como você pode testar essa aplicação remotamente:
